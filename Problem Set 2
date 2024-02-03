@@ -1,0 +1,39 @@
+### Problem 1
+for i in range(12):
+    balance = balance - (balance*monthlyPaymentRate) + (balance - (balance*monthlyPaymentRate)) * (annualInterestRate/12)
+print("Reamining Balance: ", round(balance, 2))
+
+### Problem 2
+newBalance = balance
+MIR = (annualInterestRate/12)
+r = 0
+
+while balance > 0:
+    for i in range(12):
+        balance = balance - r + (MIR * (balance-r))
+    if balance >= 1:
+        r += 10
+        balance = newBalance
+    else:
+        break
+print("Lowest Payment: ", r)
+
+### Problem 3
+MIR = (annualInterestRate/12)
+newBalance = balance
+lowerBound = newBalance/12
+higherBound = (newBalance * (1 + MIR)**12)/12.0
+epsilon = 0.03
+
+while abs(balance>epsilon):
+    r = (higherBound+lowerBound)/2
+    balance = newBalance
+    for i in range(12):
+        balance = balance - r + ((balance - r) * MIR)
+    if balance>epsilon:
+        lowerBound = r
+    elif balance<-epsilon:
+        higherBound = r
+    else:
+        break
+print('Lowest Payment: ', round(r, 2))

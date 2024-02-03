@@ -1,0 +1,26 @@
+### Problem 1
+numVowels = 0
+for char in s:
+    if char == 'a' or char == 'e' or char == 'i' or char == 'o' or char == 'u':
+        numVowels += 1
+print("Number of Vowels: ", numVowels)
+
+### Problem 2
+numBob = 0
+for char in range(len(s)):
+    if s[char:char+3] == 'bob':
+        numBob += 1
+print("Number of times Bob occurs: ", numBob)
+
+### Problem 3
+alpha = 'abcdefghijklmnopqrftuvwxyz'
+lst = ''
+lst_two = ''
+for char in range(len(s)):
+    if s[char] >= s[char-1]:
+        lst += s[char]
+    else:
+        lst = s[char]
+    if len(lst) > len(lst_two):
+        lst_two = lst
+print("Longest substring in alphabetical order is: ", lst_two)
